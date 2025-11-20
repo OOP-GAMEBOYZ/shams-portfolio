@@ -526,68 +526,70 @@
     }
 
     @media (max-width:768px){
-      .container{padding:100px 12px 20px}
-      .projects{grid-template-columns:1fr}
-      .avatar{width:120px;height:120px;font-size:2.25rem}
-      .landing-logo img{max-width:200px}
-      header{padding:12px 0}
-      .resume-content{padding:10px}
-      .close-modal{width:35px;height:35px;font-size:20px}
-      .logo{width:45px;height:45px}
-      
+
       /* Show hamburger */
       .hamburger {
         display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+        z-index: 1001;
       }
-      
-      /* Mobile Navigation - exactly like the sample */
+
+      .hamburger span {
+        width: 28px;
+        height: 3px;
+        background-color: #ff1493;
+        margin: 4px 0;
+        border-radius: 3px;
+        transition: 0.3s;
+      }
+
+      /* Mobile Navigation */
       nav {
         position: fixed;
-        left: -100%;
         top: 70px;
-        flex-direction: column;
-        background-color: #0a0a0a;
+        left: -100%;
         width: 100%;
+        background-color: #0a0a0a;
+        flex-direction: column;
         text-align: center;
-        transition: left 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
         padding: 2rem 0;
-        gap: 0;
+        transition: left 0.3s ease;
         border-top: 2px solid rgba(233,30,140,0.3);
+        gap: 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
       }
-      
+
       nav.active {
         left: 0;
       }
-      
+
       nav a {
-        padding: 1rem 0;
-        display: block;
+        padding: 1.2rem 0;
         font-size: 1rem;
+        display: block;
       }
-      
-      nav a::after {
-        display: none;
-      }
-      
-      /* Hamburger animation */
+
+      /* Hamburger Animation */
       .hamburger.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
       }
-      
       .hamburger.active span:nth-child(2) {
         opacity: 0;
       }
-      
       .hamburger.active span:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
       }
     }
 
+
     @media (max-width:560px){
       .container{padding:100px 12px 20px}
       .projects{grid-template-columns:1fr}
-      
+
       /* REMOVE nav{display:none} */
       .brand-text h1{font-size:1rem}
       .logo{width:45px;height:45px}
@@ -693,38 +695,39 @@
     <div class="loading-bar"></div>
   </div>
 
-<!-- Fixed Header / Navigation Bar -->
-<header>
-  <div class="header-content">
-    <div class="brand">
-      <!-- Wrap the logo with <a> tag here ↓ -->
-      <a href="#landing" style="text-decoration:none">
-        <div class="logo">
-          <img src="SHAMS LOGO 1.png" alt="SCC Logo">
+  <!-- Fixed Header / Navigation Bar -->
+    <header>
+      <div class="header-content">
+
+        <div class="brand">
+          <a href="#landing" style="text-decoration:none">
+            <div class="logo">
+              <img src="SHAMS LOGO 1.png" alt="SCC Logo">
+            </div>
+          </a>
+          <div class="brand-text">
+            <h1>Shamel C. Concepcion</h1>
+            <p>Computer Engineer</p>
+          </div>
         </div>
-      </a>
-      <div class="brand-text">
-        <h1>Shamel C. Concepcion</h1>
-        <p>Computer Engineer</p>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="navMenu">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-    </div>
-<!-- Hamburger Menu Button - REMOVE onclick -->
-    <button class="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    
-    <!-- Navigation links - REMOVE all onclick -->
-    <nav id="navMenu">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+    </header>
 
   <!-- Main Container -->
   <div class="container">
@@ -1146,24 +1149,21 @@
   });
 
   // Mobile menu toggle
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.getElementById('navMenu');
+  const hamburger = document.getElementById("hamburgerBtn");
+  const navMenu = document.getElementById("navMenu");
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      navMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('#navMenu a').forEach(link => {
-      link.addEventListener('click', function() {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-      });
+  // Close menu when clicking any link
+  document.querySelectorAll("#navMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
     });
-  }
+  });
 </script>
 </body>
 </html>
