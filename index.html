@@ -177,6 +177,17 @@
     #about h3{margin-top:0;color:var(--accent);font-size:1.4rem}
     #about p{line-height:1.7}
 
+    .clickable-cert {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+
+    .clickable-cert:hover {
+    text-decoration: underline;
+    text-decoration-color: #ff1493;
+    text-underline-offset: 3px;
+    }
+
     /* Skills Section */
     #skills h3{margin-top:0;color:var(--accent);font-size:1.4rem}
     .skill{margin-bottom:14px}
@@ -588,33 +599,36 @@
     <div class="loading-bar"></div>
   </div>
 
-  <!-- Fixed Header / Navigation Bar -->
-  <header>
-    <div class="header-content">
-      <div class="brand">
+<!-- Fixed Header / Navigation Bar -->
+<header>
+  <div class="header-content">
+    <div class="brand">
+      <!-- Wrap the logo with <a> tag here ↓ -->
+      <a href="#landing" style="text-decoration:none">
         <div class="logo">
           <img src="SHAMS LOGO 1.png" alt="SCC Logo">
         </div>
-        <div class="brand-text">
-          <h1>Shamel C. Concepcion</h1>
-          <p>Computer Engineer</p>
-        </div>
+      </a>
+      <div class="brand-text">
+        <h1>Shamel C. Concepcion</h1>
+        <p>Computer Engineer</p>
       </div>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
     </div>
-  </header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <!-- Main Container -->
   <div class="container">
     <main>
       <!-- Landing Logo Section -->
-      <section class="landing-logo">
+      <section id="landing" class="landing-logo">
         <img src="SHAMS LOGO.png" alt="Shamel C. Concepcion Logo">
       </section>
 
@@ -660,21 +674,33 @@
       <section id="about" class="card">
         <h3>About Me</h3>
         <p style="color:var(--muted)">
-          Hi!!! you can call me Shams😊, a 4th-year Computer Engineering student. Through this course, I&apos;ve learned how to design hardware, program software, and connect the two to build practical solutions. My goal is to grow as a professional engineer and contribute to projects that connect technology with real-world needs.
+          Hi!!! you can call me Shams😊, a 4th-year Computer Engineering student. Through this course, I've learned how to design hardware, program software, and connect the two to build practical solutions. My goal is to grow as a professional engineer and contribute to projects that connect technology with real-world needs.
         </p>
         <p style="color:var(--muted)">
           In my free time, I love reading Wattpad stories and watching K-dramas and movie series, which inspire me and keep me relaxed.📖🍿
         </p>
         <p style="color:var(--muted);margin-top:12px">
+          <svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px;fill:#ff1493" viewBox="0 0 24 24">
+            <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+          </svg>
           <strong>EDUCATION:</strong> Bachelor of Science in Computer Engineering <em>(2022-Present)</em>
         </p>
         <p style="color:var(--muted);margin-top:12px">
-          <strong>ON-THE-JOB TRAINING:</strong> SOFI AI Tech Solution Inc. <em>(250 hours)</em>
+          <svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px;fill:#ff1493" viewBox="0 0 24 24">
+            <path d="M20,6C20.58,6 21.05,6.2 21.42,6.59C21.8,7 22,7.45 22,8V19C22,19.55 21.8,20 21.42,20.41C21.05,20.8 20.58,21 20,21H4C3.42,21 2.95,20.8 2.58,20.41C2.2,20 2,19.55 2,19V8C2,7.45 2.2,7 2.58,6.59C2.95,6.2 3.42,6 4,6H8V4C8,3.42 8.2,2.95 8.58,2.58C8.95,2.2 9.42,2 10,2H14C14.58,2 15.05,2.2 15.42,2.58C15.8,2.95 16,3.42 16,4V6H20M4,8V19H20V8H4M14,6V4H10V6H14Z"/>
+          </svg>
+          <strong class="clickable-cert">ON-THE-JOB TRAINING:</strong> SOFI AI Tech Solution Inc. <em>(250 hours)</em>
         </p>
         <p style="color:var(--muted);margin-top:12px">
-          <strong>CERTIFICATION:</strong> Computer Systems Servicing (CSS) NCII <em>(TESDA)</em>
+          <svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px;fill:#ff1493" viewBox="0 0 24 24">
+            <path d="M4,3H18A2,2 0 0,1 20,5V12.5C21.19,12.5 22.27,12.95 23.06,13.67L23.72,13L22.5,11.5L21.27,13L21.84,13.61C22.57,14.42 23,15.46 23,16.6C23,19.03 21.03,21 18.6,21C17.46,21 16.42,20.57 15.61,19.84L15,19.28L14.39,19.84C13.58,20.57 12.54,21 11.4,21C8.97,21 7,19.03 7,16.6V16.5C7,14.84 7.97,13.42 9.38,12.72V5A2,2 0 0,1 11,3M11,5V10.5L11.38,10.56C13,10.75 14.25,12.14 14.25,13.8V14A2.75,2.75 0 0,0 17,16.75C18.93,16.75 20.5,18.32 20.5,20.25C20.5,20.89 20.3,21.5 19.96,22H18C18.6,22 19.13,21.74 19.5,21.32C19.82,20.97 20,20.5 20,20C20,18.62 18.88,17.5 17.5,17.5C16.12,17.5 15,18.62 15,20C15,20.5 15.18,20.97 15.5,21.32C15.87,21.74 16.4,22 17,22H15.04C14.7,21.5 14.5,20.89 14.5,20.25C14.5,18.32 16.07,16.75 18,16.75A2.75,2.75 0 0,0 20.75,14V13.8C20.75,12.14 22,10.75 23.62,10.56L24,10.5V5H11M4,5V21H9V19H6V5H4Z"/>
+          </svg>
+          <strong class="clickable-cert">CERTIFICATION:</strong> Computer Systems Servicing (CSS) NCII <em>(TESDA)</em>
         </p>
         <p style="color:var(--muted);margin-top:12px">
+          <svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px;fill:#ff1493" viewBox="0 0 24 24">
+            <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"/>
+          </svg>
           <strong>ORGANIZATION:</strong> Institute of Computer Engineers of the Philippines Student Edition-BulSU Bustos Chapter <em>(Vice President-External Affairs)</em>
         </p>
       </section>
@@ -685,31 +711,93 @@
           <h3>Skills</h3>
           <div style="margin-top:10px">
             <div class="skill">
-              <div class="meta"><span>Basic Programming Languages</span><span>97%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                  </svg>
+                  Basic Programming Languages
+                </span>
+                <span>97%</span>
+              </div>
               <div class="bar"><i style="width:97%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Software Design &amp; Development</span><span>93%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M3 3h18v2H3V3m0 4h18v2H3V7m0 4h18v2H3v-2m0 4h18v2H3v-2m0 4h18v2H3v-2z"/>
+                  </svg>
+                  Software Design &amp; Development
+                </span>
+                <span>93%</span>
+              </div>
               <div class="bar"><i style="width:93%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Proficient in Microsoft Office</span><span>90%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                  </svg>
+                  Proficient in Microsoft Office
+                </span>
+                <span>90%</span>
+              </div>
               <div class="bar"><i style="width:90%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Knowledge in Hardware</span><span>95%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M9,2V8H11V11H5C3.89,11 3,11.89 3,13V16H1V22H7V16H5V13H11V16H9V22H15V16H13V13H19V16H17V22H23V16H21V13C21,11.89 20.11,11 19,11H13V8H15V2H9Z"/>
+                  </svg>
+                  Knowledge in Hardware
+                </span>
+                <span>95%</span>
+              </div>
               <div class="bar"><i style="width:95%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Problem Solving</span><span>87%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M21.71,20.29L20.29,21.71A1,1 0 0,1 19.58,22A1,1 0 0,1 18.87,21.71L7,9.85A3.81,3.81 0 0,1 6,10A4,4 0 0,1 2,6A4,4 0 0,1 6,2A4,4 0 0,1 10,6C10,6.64 9.87,7.26 9.62,7.83L11,9.21L12.41,7.8C12.87,7.34 13.57,7.34 14.03,7.8C14.5,8.26 14.5,8.96 14.03,9.42L12.62,10.83L14.03,12.24C14.5,12.71 14.5,13.41 14.03,13.87C13.57,14.34 12.87,14.34 12.41,13.87L11,12.46L9.62,13.87C9.16,14.34 8.46,14.34 8,13.87L7.8,13.67L21.71,20.29M2.59,2.59L5.76,5.76C5.9,5.47 6,5.24 6,5A1,1 0 0,0 5,4A1,1 0 0,0 4,5C4,5.5 4.2,5.9 4.5,6.2L2.59,2.59Z"/>
+                  </svg>
+                  Problem Solving
+                </span>
+                <span>87%</span>
+              </div>
               <div class="bar"><i style="width:87%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Communication Skills</span><span>85%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M17,12V3A1,1 0 0,0 16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z"/>
+                  </svg>
+                  Communication Skills
+                </span>
+                <span>85%</span>
+              </div>
               <div class="bar"><i style="width:85%"></i></div>
             </div>
+            
             <div class="skill">
-              <div class="meta"><span>Team Collaboration</span><span>90%</span></div>
+              <div class="meta">
+                <span>
+                  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px;fill:#ff1493" viewBox="0 0 24 24">
+                    <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"/>
+                  </svg>
+                  Team Collaboration
+                </span>
+                <span>90%</span>
+              </div>
               <div class="bar"><i style="width:90%"></i></div>
             </div>
           </div>
@@ -815,10 +903,51 @@
     </main>
 
     <footer>
-      <div>© <span id="year"></span> SHAMS PORTFOLIO❤</div>
+      <div>© <span id="year"></span> SHAMS PORTFOLIO❤. All Rights Reserved.</div>
     </footer>
   </div>
 
+  <!-- Certificate Modal -->
+<div id="certificateModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;justify-content:center;align-items:center" onclick="closeCertificate()">
+  <div style="position:relative;max-width:90%;max-height:90%;padding:20px">
+    <span style="position:absolute;top:10px;right:25px;color:#ff1493;font-size:35px;font-weight:bold;cursor:pointer;transition:color 0.3s" onclick="closeCertificate()" onmouseover="this.style.color='#ff69b4'" onmouseout="this.style.color='#ff1493'">&times;</span>
+    <img id="certificateImage" src="" style="max-width:100%;max-height:85vh;object-fit:contain">
+  </div>
+</div>
+
+<script>
+// Certificate image 
+const certificates = {
+  ojt: 'SOFIAI.jpg',  // Just the filename if in same folder
+  css: 'NC2.jpg'   // Just the filename if in same folder
+};
+
+// Add click handlers
+document.querySelectorAll('.clickable-cert').forEach((el, index) => {
+  el.onclick = () => showCertificate(index === 0 ? 'ojt' : 'css');
+});
+
+function showCertificate(type) {
+  const modal = document.getElementById('certificateModal');
+  const img = document.getElementById('certificateImage');
+  img.src = certificates[type];
+  modal.style.display = 'flex';
+}
+
+function closeCertificate() {
+  document.getElementById('certificateModal').style.display = 'none';
+}
+
+// Close modal when pressing ESC key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeCertificate();
+  }
+});
+</script>
+
+
+</script>
   <!-- Resume Modal -->
   <div id="resumeModal" class="resume-modal" onclick="closeResumeOnBackground(event)">
     <div class="resume-content">
