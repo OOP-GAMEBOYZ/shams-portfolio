@@ -118,25 +118,20 @@
       width:100%;
     }
 
-    /* Hamburger Menu */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-      z-index: 1001;
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
     }
 
-    .hamburger span {
-      width: 28px;
-      height: 3px;
-      background-color: #ff1493;
-      margin: 4px 0;
-      transition: 0.3s;
-      border-radius: 3px;
-      display: block;
+    .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: #a855f7;
+        border-radius: 2px;
+        transition: all 0.3s ease;
     }
 
     /* Main Container */
@@ -514,94 +509,59 @@
       opacity:0;
     }
     
-/* Responsive loading screen */
-@media (max-width:560px){
-  .loading-logo{
-    width:300px;
-    height:300px;
-  }
-  .loading-text{
-    font-size:1.4rem;
-  }
-  .loading-bar{
-    width:300px;
-  }
-}
-
-/* Responsive */
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr}
-  .projects{grid-template-columns:repeat(2,1fr)}
-  .contact-grid{grid-template-columns:1fr}
-  .grid-2{grid-template-columns:1fr}
-  .brand-text h1{font-size:1.1rem}
-  .logo{width:60px;height:60px}
-  .resume-content{max-width:95%;padding:15px}
-}
-
-@media (max-width:768px){
-  .container{padding:100px 12px 20px}
-  .projects{grid-template-columns:1fr}
-  .avatar{width:120px;height:120px;font-size:2.25rem}
-  .landing-logo img{max-width:200px}
-  header{padding:12px 0}
-  .resume-content{padding:10px}
-  .close-modal{width:35px;height:35px;font-size:20px}
-  .logo{width:50px !important;height:50px !important}
-  
-  /* Show hamburger */
-  .hamburger {
-    display: flex !important;
-  }
-
-      /* Mobile Navigation */
-      nav {
-        position: fixed !important;
-        top: 70px !important;
-        left: -100% !important;
-        width: 100% !important;
-        background-color: #0a0a0a !important;
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 2rem 0 !important;
-        transition: left 0.3s ease !important;
-        border-top: 2px solid rgba(233,30,140,0.3) !important;
-        gap: 0 !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
-        z-index: 999 !important;
+    /* Responsive loading screen */
+    @media (max-width:560px){
+      .loading-logo{
+        width:300px;
+        height:300px;
       }
-
-      nav.active {
-        left: 0 !important;
+      .loading-text{
+        font-size:1.4rem;
       }
-
-      nav a {
-        padding: 1.2rem 0 !important;
-        font-size: 1rem !important;
-        display: block !important;
-      }
-
-      nav a::after {
-        display: none !important;
-      }
-
-      /* Hamburger Animation */
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-      }
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
+      .loading-bar{
+        width:300px;
       }
     }
 
-    @media (max-width:560px){
-      .brand-text h1{font-size:1rem}
-      .logo{width:45px !important;height:45px !important}
-      
-      /* DO NOT hide nav here - it's handled by the mobile menu */
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+      position: fixed;
+      left: -100%;
+      top: 70px;
+      flex-direction: column;
+      background-color: #1a1a1a;
+      width: 100%;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
+      padding: 2rem 0;
+      gap: 0;
+      }
+
+      .nav-links.active {
+          left: 0;
+      }
+
+      .nav-links li {
+          padding: 1rem 0;
+      }
+
+      .menu-toggle {
+          display: flex;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+          opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+      }
     }
 
     /* Resume Modal */
