@@ -8,10 +8,8 @@
     :root{
       --bg: #000000;
       --card: #0a0a0a;
-      --text: #ffffff; 
-      --hover: rgba(233,30,140,0.1); 
       --muted: #a0a0a0;
-      --accent: #e91e8c;
+      --accent: #e91e8c; /* pink */
       --accent-light: #ff69b4;
       --glass: rgba(255,255,255,0.03);
       --radius: 12px;
@@ -116,22 +114,6 @@
     nav a:hover::after,
     nav a.active::after{
       width:100%;
-    }
-
-    /* Mobile Menu Toggle */
-    .menu-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 4px;
-    }
-
-    .menu-toggle span {
-        width: 25px;
-        height: 3px;
-        background: #a855f7;
-        border-radius: 2px;
-        transition: all 0.3s ease;
     }
 
     /* Main Container */
@@ -523,47 +505,6 @@
       }
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-      position: fixed;
-      left: -100%;
-      top: 70px;
-      flex-direction: column;
-      background-color: #1a1a1a;
-      width: 100%;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
-      padding: 2rem 0;
-      gap: 0;
-      }
-
-      .nav-links.active {
-          left: 0;
-      }
-
-      .nav-links li {
-          padding: 1rem 0;
-      }
-
-      .menu-toggle {
-          display: flex;
-      }
-
-      .menu-toggle.active span:nth-child(1) {
-          transform: rotate(-45deg) translate(-5px, 6px);
-      }
-
-      .menu-toggle.active span:nth-child(2) {
-          opacity: 0;
-      }
-
-      .menu-toggle.active span:nth-child(3) {
-          transform: rotate(45deg) translate(-5px, -6px);
-      }
-    }
-
     /* Resume Modal */
     .resume-modal{
       display:none;
@@ -658,39 +599,31 @@
     <div class="loading-bar"></div>
   </div>
 
-  <!-- Fixed Header / Navigation Bar -->
-    <header>
-      <div class="header-content">
-
-        <div class="brand">
-          <a href="#landing" style="text-decoration:none">
-            <div class="logo">
-              <img src="SHAMS LOGO 1.png" alt="SCC Logo">
-            </div>
-          </a>
-          <div class="brand-text">
-            <h1>Shamel C. Concepcion</h1>
-            <p>Computer Engineer</p>
-          </div>
+<!-- Fixed Header / Navigation Bar -->
+<header>
+  <div class="header-content">
+    <div class="brand">
+      <!-- Wrap the logo with <a> tag here ↓ -->
+      <a href="#landing" style="text-decoration:none">
+        <div class="logo">
+          <img src="SHAMS LOGO 1.png" alt="SCC Logo">
         </div>
-
-        <!-- Hamburger -->
-        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <!-- Navigation -->
-        <nav id="navMenu">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
+      </a>
+      <div class="brand-text">
+        <h1>Shamel C. Concepcion</h1>
+        <p>Computer Engineer</p>
       </div>
-    </header>
+    </div>
+    
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <!-- Main Container -->
   <div class="container">
@@ -975,7 +908,7 @@
     </footer>
   </div>
 
-<!-- Certificate Modal -->
+  <!-- Certificate Modal -->
 <div id="certificateModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;justify-content:center;align-items:center" onclick="closeCertificate()">
   <div style="position:relative;max-width:90%;max-height:90%;padding:20px">
     <span style="position:absolute;top:10px;right:25px;color:#ff1493;font-size:35px;font-weight:bold;cursor:pointer;transition:color 0.3s" onclick="closeCertificate()" onmouseover="this.style.color='#ff69b4'" onmouseout="this.style.color='#ff1493'">&times;</span>
@@ -983,13 +916,120 @@
   </div>
 </div>
 
-<!-- Resume Modal -->
-<div id="resumeModal" class="resume-modal" onclick="closeResumeOnBackground(event)">
-  <div class="resume-content">
-    <button class="close-modal" onclick="closeResume()">&times;</button>
-    <img src="SHAMS CV.jpg" alt="Shamel C. Concepcion Resume">
+<script>
+// Certificate image 
+const certificates = {
+  ojt: 'SOFIAI.jpg',  // Just the filename if in same folder
+  css: 'NC2.jpg'   // Just the filename if in same folder
+};
+
+// Add click handlers
+document.querySelectorAll('.clickable-cert').forEach((el, index) => {
+  el.onclick = () => showCertificate(index === 0 ? 'ojt' : 'css');
+});
+
+function showCertificate(type) {
+  const modal = document.getElementById('certificateModal');
+  const img = document.getElementById('certificateImage');
+  img.src = certificates[type];
+  modal.style.display = 'flex';
+}
+
+function closeCertificate() {
+  document.getElementById('certificateModal').style.display = 'none';
+}
+
+// Close modal when pressing ESC key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeCertificate();
+  }
+});
+</script>
+
+
+</script>
+  <!-- Resume Modal -->
+  <div id="resumeModal" class="resume-modal" onclick="closeResumeOnBackground(event)">
+    <div class="resume-content">
+      <button class="close-modal" onclick="closeResume()">&times;</button>
+      <!-- Replace 'your-resume.jpg' with your actual resume image filename -->
+      <img src="SHAMS CV.jpg" alt="Shamel C. Concepcion Resume">
+    </div>
   </div>
-</div>
+
+  <script>
+    // Loading Screen
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+        document.body.classList.remove('loading');
+      }, 2500); // 2.5 seconds loading time to match animation
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    function openResume() {
+      document.getElementById('resumeModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeResume() {
+      document.getElementById('resumeModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    function closeResumeOnBackground(event) {
+      if (event.target.id === 'resumeModal') {
+        closeResume();
+      }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeResume();
+      }
+    });    
+
+    // Active navigation link highlighting
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Function to set active link
+    function setActiveLink() {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    // Set active link on scroll
+    window.addEventListener('scroll', setActiveLink);
+    
+    // Set active link on page load
+    setActiveLink();
+    
+    // Set active link on click
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    }); 
+  </script>
 
 <!-- VIDEO MODAL -->
 <div class="modal" id="videoModal">
@@ -1003,59 +1043,11 @@
 </div>
 
 <script>
-  // Loading Screen
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.getElementById('loadingScreen').classList.add('hidden');
-      document.body.classList.remove('loading');
-    }, 2500);
-  });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
-  // Resume Modal Functions
-  function openResume() {
-    document.getElementById('resumeModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeResume() {
-    document.getElementById('resumeModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-  
-  function closeResumeOnBackground(event) {
-    if (event.target.id === 'resumeModal') {
-      closeResume();
-    }
-  }
-
-  // Certificate Modal Functions
-  const certificates = {
-    ojt: 'SOFIAI.jpg',
-    css: 'NC2.jpg'
-  };
-
-  document.querySelectorAll('.clickable-cert').forEach((el, index) => {
-    el.onclick = () => showCertificate(index === 0 ? 'ojt' : 'css');
-  });
-
-  function showCertificate(type) {
-    const modal = document.getElementById('certificateModal');
-    const img = document.getElementById('certificateImage');
-    img.src = certificates[type];
-    modal.style.display = 'flex';
-  }
-
-  function closeCertificate() {
-    document.getElementById('certificateModal').style.display = 'none';
-  }
-
-  // Video Modal Functions
   function openVideo(src) {
     const modal = document.getElementById("videoModal");
     const video = document.getElementById("projectVideo");
     const source = document.getElementById("videoSource");
+
     source.src = src;
     video.load();
     modal.classList.add("active");
@@ -1064,69 +1056,11 @@
   function closeVideo() {
     const modal = document.getElementById("videoModal");
     const video = document.getElementById("projectVideo");
+
     modal.classList.remove("active");
     video.pause();
     video.currentTime = 0;
   }
-
-  // Close all modals with Escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeResume();
-      closeCertificate();
-      closeVideo();
-    }
-  });
-
-  // Active navigation link highlighting
-  const navLinksAll = document.querySelectorAll('nav a');
-  const sections = document.querySelectorAll('section[id]');
-  
-  function setActiveLink() {
-    let current = '';
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= (sectionTop - 150)) {
-        current = section.getAttribute('id');
-      }
-    });
-    
-    navLinksAll.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }
-  
-  window.addEventListener('scroll', setActiveLink);
-  setActiveLink();
-  
-  navLinksAll.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinksAll.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Mobile menu toggle
-  const hamburger = document.getElementById("hamburgerBtn");
-  const navMenu = document.getElementById("navMenu");
-
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-  });
-
-  // Close menu when clicking any link
-  document.querySelectorAll("#navMenu a").forEach(link => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    });
-  });
 </script>
 </body>
 </html>
