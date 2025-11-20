@@ -525,69 +525,54 @@
       .resume-content{max-width:95%;padding:15px}
     }
 
-      @media (max-width:768px){
-      /* Show hamburger on mobile */
+    @media (max-width:768px){
+      .container{padding:100px 12px 20px}
+      .projects{grid-template-columns:1fr}
+      .avatar{width:120px;height:120px;font-size:2.25rem}
+      .landing-logo img{max-width:200px}
+      header{padding:12px 0}
+      .resume-content{padding:10px}
+      .close-modal{width:35px;height:35px;font-size:20px}
+      .logo{width:45px;height:45px}
+      
+      /* Show hamburger */
       .hamburger {
-        display: flex !important;
+        display: flex;
       }
       
-      /* Adjust brand on mobile */
-      .brand-text h1 {
-        font-size: 1rem;
-      }
-      
-      .brand-text p {
-        font-size: 0.8rem;
-      }
-      
-      .logo {
-        width: 50px !important;
-        height: 50px !important;
-      }
-      
-      /* Hide nav by default, show as sidebar when active */
+      /* Mobile Navigation - exactly like the sample */
       nav {
-        position: fixed !important;
-        top: 0 !important;
-        right: -100% !important;
-        width: 70% !important;
-        max-width: 300px !important;
-        height: 100vh !important;
-        background: #0a0a0a !important;
-        flex-direction: column !important;
-        padding: 100px 30px 30px !important;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.5) !important;
-        transition: right 0.3s ease !important;
-        gap: 15px !important;
-        z-index: 9999 !important;
-        display: flex !important;
-        border-left: 2px solid rgba(233,30,140,0.3) !important;
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: #0a0a0a;
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
+        padding: 2rem 0;
+        gap: 0;
+        border-top: 2px solid rgba(233,30,140,0.3);
       }
       
-      /* Show nav when active */
       nav.active {
-        right: 0 !important;
+        left: 0;
       }
       
       nav a {
-        padding: 15px !important;
-        font-size: 1.1rem !important;
-        width: 100% !important;
-        border-radius: 8px !important;
-        display: block !important;
-      }
-      
-      nav a:hover {
-        background: rgba(233,30,140,0.2) !important;
+        padding: 1rem 0;
+        display: block;
+        font-size: 1rem;
       }
       
       nav a::after {
-        display: none !important;
+        display: none;
       }
       
-      /* Animate hamburger to X */
+      /* Hamburger animation */
       .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(9px, 9px);
+        transform: rotate(-45deg) translate(-5px, 6px);
       }
       
       .hamburger.active span:nth-child(2) {
@@ -595,7 +580,13 @@
       }
       
       .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(8px, -8px);
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+
+    @media (max-width:560px){
+      nav {
+        width: 100%;
       }
     }
 
@@ -708,21 +699,20 @@
         <p>Computer Engineer</p>
       </div>
     </div>
-
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+<!-- Hamburger Menu Button - REMOVE onclick -->
+    <button class="hamburger" aria-label="Menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
     
-    <!-- ADD id="navMenu" here ↓ -->
+    <!-- Navigation links - REMOVE all onclick -->
     <nav id="navMenu">
-      <a href="#home" onclick="closeMenu()">Home</a>
-      <a href="#about" onclick="closeMenu()">About</a>
-      <a href="#skills" onclick="closeMenu()">Skills</a>
-      <a href="#projects" onclick="closeMenu()">Projects</a>
-      <a href="#contact" onclick="closeMenu()">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -1010,7 +1000,7 @@
     </footer>
   </div>
 
-  <!-- Certificate Modal -->
+<!-- Certificate Modal -->
 <div id="certificateModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;justify-content:center;align-items:center" onclick="closeCertificate()">
   <div style="position:relative;max-width:90%;max-height:90%;padding:20px">
     <span style="position:absolute;top:10px;right:25px;color:#ff1493;font-size:35px;font-weight:bold;cursor:pointer;transition:color 0.3s" onclick="closeCertificate()" onmouseover="this.style.color='#ff69b4'" onmouseout="this.style.color='#ff1493'">&times;</span>
@@ -1018,172 +1008,153 @@
   </div>
 </div>
 
+<!-- Resume Modal -->
+<div id="resumeModal" class="resume-modal" onclick="closeResumeOnBackground(event)">
+  <div class="resume-content">
+    <button class="close-modal" onclick="closeResume()">&times;</button>
+    <img src="SHAMS CV.jpg" alt="Shamel C. Concepcion Resume">
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal" id="videoModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <video id="projectVideo" controls>
+      <source id="videoSource" src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
 <script>
-// Certificate image 
-const certificates = {
-  ojt: 'SOFIAI.jpg',  // Just the filename if in same folder
-  css: 'NC2.jpg'   // Just the filename if in same folder
-};
+  // Loading Screen
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('loadingScreen').classList.add('hidden');
+      document.body.classList.remove('loading');
+    }, 2500);
+  });
 
-// Add click handlers
-document.querySelectorAll('.clickable-cert').forEach((el, index) => {
-  el.onclick = () => showCertificate(index === 0 ? 'ojt' : 'css');
-});
-
-function showCertificate(type) {
-  const modal = document.getElementById('certificateModal');
-  const img = document.getElementById('certificateImage');
-  img.src = certificates[type];
-  modal.style.display = 'flex';
-}
-
-function closeCertificate() {
-  document.getElementById('certificateModal').style.display = 'none';
-}
-
-// Close modal when pressing ESC key
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    closeCertificate();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+  // Resume Modal Functions
+  function openResume() {
+    document.getElementById('resumeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-});
-</script>
+  
+  function closeResume() {
+    document.getElementById('resumeModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+  
+  function closeResumeOnBackground(event) {
+    if (event.target.id === 'resumeModal') {
+      closeResume();
+    }
+  }
 
+  // Certificate Modal Functions
+  const certificates = {
+    ojt: 'SOFIAI.jpg',
+    css: 'NC2.jpg'
+  };
 
-</script>
-  <!-- Resume Modal -->
-  <div id="resumeModal" class="resume-modal" onclick="closeResumeOnBackground(event)">
-    <div class="resume-content">
-      <button class="close-modal" onclick="closeResume()">&times;</button>
-      <!-- Replace 'your-resume.jpg' with your actual resume image filename -->
-      <img src="SHAMS CV.jpg" alt="Shamel C. Concepcion Resume">
-    </div>
-  </div>
+  document.querySelectorAll('.clickable-cert').forEach((el, index) => {
+    el.onclick = () => showCertificate(index === 0 ? 'ojt' : 'css');
+  });
 
-  <script>
-    // Loading Screen
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loadingScreen').classList.add('hidden');
-        document.body.classList.remove('loading');
-      }, 2500); // 2.5 seconds loading time to match animation
+  function showCertificate(type) {
+    const modal = document.getElementById('certificateModal');
+    const img = document.getElementById('certificateImage');
+    img.src = certificates[type];
+    modal.style.display = 'flex';
+  }
+
+  function closeCertificate() {
+    document.getElementById('certificateModal').style.display = 'none';
+  }
+
+  // Video Modal Functions
+  function openVideo(src) {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("projectVideo");
+    const source = document.getElementById("videoSource");
+    source.src = src;
+    video.load();
+    modal.classList.add("active");
+  }
+
+  function closeVideo() {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("projectVideo");
+    modal.classList.remove("active");
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  // Close all modals with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeResume();
+      closeCertificate();
+      closeVideo();
+    }
+  });
+
+  // Active navigation link highlighting
+  const navLinksAll = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section[id]');
+  
+  function setActiveLink() {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.scrollY >= (sectionTop - 150)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navLinksAll.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+  
+  navLinksAll.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinksAll.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Mobile menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.getElementById('navMenu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
     });
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    function openResume() {
-      document.getElementById('resumeModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeResume() {
-      document.getElementById('resumeModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-    
-    function closeResumeOnBackground(event) {
-      if (event.target.id === 'resumeModal') {
-        closeResume();
-      }
-    }
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeResume();
-      }
-    });    
-
-    // Active navigation link highlighting
-    const navLinks = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section[id]');
-    
-    // Function to set active link
-    function setActiveLink() {
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= (sectionTop - 150)) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-    
-    // Set active link on scroll
-    window.addEventListener('scroll', setActiveLink);
-    
-    // Set active link on page load
-    setActiveLink();
-    
-    // Set active link on click
-    navLinks.forEach(link => {
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#navMenu a').forEach(link => {
       link.addEventListener('click', function() {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
-    }); 
-  </script>
-
-  <!-- VIDEO MODAL -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeVideo()">&times;</button>
-      <video id="projectVideo" controls>
-        <source id="videoSource" src="" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-
-    <script>
-    function toggleMenu() {
-      const nav = document.getElementById('navMenu');
-      const hamburger = document.querySelector('.hamburger');
-      
-      if (nav && hamburger) {
-        nav.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        
-        // Prevent body scroll when menu is open
-        if (nav.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'auto';
-        }
-      }
-    }
-
-    function closeMenu() {
-      const nav = document.getElementById('navMenu');
-      const hamburger = document.querySelector('.hamburger');
-      
-      if (nav && hamburger) {
-        nav.classList.remove('active');
+        navMenu.classList.remove('active');
         hamburger.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    }
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const nav = document.getElementById('navMenu');
-      const hamburger = document.querySelector('.hamburger');
-      
-      if (nav && hamburger && nav.classList.contains('active')) {
-        if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
-          closeMenu();
-        }
-      }
+      });
     });
-    </script>
+  }
+</script>
 </body>
 </html>
