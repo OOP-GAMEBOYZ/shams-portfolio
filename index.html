@@ -116,6 +116,75 @@
       width:100%;
     }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 3px;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--card);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav a {
+        padding: 15px 20px;
+        margin: 5px 0;
+        border-radius: 8px;
+        transition: background 0.3s;
+      }
+      
+      nav a:hover {
+        background: var(--hover);
+      }
+      
+      /* Hamburger animation when active */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+
     /* Main Container */
     .container{
       width:100%;
@@ -614,6 +683,14 @@
         <p>Computer Engineer</p>
       </div>
     </div>
+
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -1030,36 +1107,63 @@ document.addEventListener('keydown', function(event) {
     }); 
   </script>
 
-<!-- VIDEO MODAL -->
-<div class="modal" id="videoModal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeVideo()">&times;</button>
-    <video id="projectVideo" controls>
-      <source id="videoSource" src="" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <!-- VIDEO MODAL -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeVideo()">&times;</button>
+      <video id="projectVideo" controls>
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
-</div>
 
-<script>
-  function openVideo(src) {
-    const modal = document.getElementById("videoModal");
-    const video = document.getElementById("projectVideo");
-    const source = document.getElementById("videoSource");
+  <script>
+    function openVideo(src) {
+      const modal = document.getElementById("videoModal");
+      const video = document.getElementById("projectVideo");
+      const source = document.getElementById("videoSource");
 
-    source.src = src;
-    video.load();
-    modal.classList.add("active");
+      source.src = src;
+      video.load();
+      modal.classList.add("active");
+    }
+
+    function closeVideo() {
+      const modal = document.getElementById("videoModal");
+      const video = document.getElementById("projectVideo");
+
+      modal.classList.remove("active");
+      video.pause();
+      video.currentTime = 0;
+    }
+  </script>
+
+  <script>
+  function toggleMenu() {
+    const nav = document.getElementById('navMenu');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('active');
   }
 
-  function closeVideo() {
-    const modal = document.getElementById("videoModal");
-    const video = document.getElementById("projectVideo");
-
-    modal.classList.remove("active");
-    video.pause();
-    video.currentTime = 0;
+  function closeMenu() {
+    const nav = document.getElementById('navMenu');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.remove('active');
+    hamburger.classList.remove('active');
   }
-</script>
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    const nav = document.getElementById('navMenu');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+      nav.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  });
+  </script>
 </body>
 </html>
